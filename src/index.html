@@ -1,132 +1,18 @@
-<!DOCTYPE html>
-<html ng-app="CadClientes" lang="">
-
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="fontawesome/css/all.css">
-  <script src="angular/angular.js"></script>
-  <script src="jquery/jquery.js"></script>
-  <script src="bootstrap/js/bootstrap.min.js"></script>
-  <script src="js/code.js"></script>
-  <script src="js/mask.js"></script>
-  <title>CadasTrex</title>
-  <script type="text/javascript">
-  </script>
+  <meta charset="utf-8">
+  <title>Cadastrex</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href=favicon.ico>
+  <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/6c882f834b.js"></script>
 </head>
-
-<body class="fundo" ng-controller="CadClienteCrtl">
-
-<div class="jumbotron border pad border-secondary w-75">
-  <h3 id="title">{{app}}</h3>
-
-  <div class="input-group mb-3">
-    <input class="form-control ml-4 mt-4 col-md-11" ng-model="Buscar" placeholder="Filtre aqui!">
-    <div class="input-group-append">
-      <button type="button" class="btn btn-success mt-4" data-toggle="modal" data-target="#cliente"><i
-        class="fas fa-plus"></i></button>
-    </div>
-  </div>
-
-  <div ng-hide="!clientes.length == 0" class="form-row mt-5">
-    <div class="col-md-12">
-      <i class="fas fa-ghost text-secondary" style="font-size: 5rem;"></i>
-      <h3 class="text-dark mt-2 text-ghost">Sem dados para exibir!</h3>
-    </div>
-  </div>
-
-  <table ng-show="clientes.length > 0" class="table">
-    <tr>
-      <th></th>
-      <th>Nome</th>
-      <th>Gênero</th>
-      <th>CPF</th>
-      <th>Telefone</th>
-      <th>Email</th>
-      <th>Ações</th>
-    </tr>
-    <tr ng-class="{'selecionado negrito': cliente.selecionado}"
-        ng-repeat="cliente in clientes | filter: Buscar | orderBy: 'nome'">
-      <td><label>
-        <input type="checkbox" class="checkbox" ng-model="cliente.selecionado">
-      </label></td>
-      <td>{{cliente.nome | uppercase}}</td>
-      <td ng-show="sexo.sexo.codigo=='M'"><i class="fas fa-mars text-primary"></i></td>
-      <td ng-show="sexo.sexo.codigo=='F'"><i class="fas fa-venus text-danger"></i></td>
-      <td ng-show="sexo.sexo.codigo=='O'"><i class="fas fa-neuter text-warning"></i></td>
-      <td>{{cliente.cpf}}</td>
-      <td>{{cliente.telefone}}</td>
-      <td>{{cliente.email}}</td>
-      <td>
-        <button class="btn btn-danger" ng-click="apagarCliente(clientes)"
-                ng-disabled="!temClienteSelecionado(clientes)"><i
-          class="fas fa-user-minus"></i></button>&nbsp;&nbsp;
-        <button class="btn btn-primary" data-toggle="modal" data-target="#cliente"
-                ng-click="edit(cliente, $index)" ng-disabled="!temClienteSelecionado(clientes)"><i
-          class="fas fa-user-edit"></i></button>
-      </td>
-    </tr>
-
-  </table>
-  <hr>
-</div>
-
-<!-- MODAL-->
-<div class="modal fade" id="cliente" tabindex="-1" role="dialog" aria-labelledby="cliente" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="modal-title"><b>{{app}}</b></span>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form class="modal-body" name="clienteForm" method="post">
-        <div class="form-row mb-2">
-          <div class="col-md-6">
-            <input type="text" ng-model="cliente.nome" class="form-control" placeholder="Nome"
-                   ng-required="true">
-          </div>
-          <div class="col-md-6">
-            <input id="cpf" type="text" maxlength="14" onkeypress="this.value = FormataCpf(event)"
-                   onpaste="return false" ng-model="cliente.cpf" class="form-control" placeholder="CPF"
-                   ng-required="true">
-          </div>
-        </div>
-        <div class="form-row mb-2">
-          <div class="col-md-6">
-            <input id="telefone" type="text" maxlength="15"
-                   onkeydown="this.value = FormataTelefone(event)" onpaste="return false"
-                   ng-model="cliente.telefone" class="form-control" placeholder="Telefone"
-                   ng-required="true">
-          </div>
-          <div class="col-md-6">
-            <select id="pG" class="form-control" ng-model="sexo.sexo"
-                    ng-options="sexo.nome for sexo in sexo"
-                    ng-required="true">
-              <option value="">Gênero</option>
-            </select>
-          </div>
-        </div>
-        <input type="email" ng-model="cliente.email" class="form-control mb-2" placeholder="Email"
-               ng-required="true">
-
-        <small class="text-secondary small float-right smallLimp"
-               ng-click="limparForm()"><b>Limpar</b></small>
-        <hr class="mt-5">
-
-        <button class="btn btn-success float-right" ng-click="adicionarCliente(cliente)"
-                ng-disabled="clienteForm.$invalid">
-          <i class="fas fa-save"></i>
-        </button>
-      </form>
-    </div>
-  </div>
-</div>
-
+<body>
+  <app-root></app-root>
 </body>
-
 </html>

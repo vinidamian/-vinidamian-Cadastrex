@@ -1,27 +1,17 @@
-# Lista2
+# Cadastrex
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.16.
 
-## Development server
+Feito pelos alunos do curso técnico em informática do SENAI / SJ, turma de 2021
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+`Alunos: Gabriel de Souza Leal e Vinicius Damian.`
 
-## Code scaffolding
+## Inicio
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Via terminal, preferencialmente Linux Ubunto, instale o `npm` e em seguide, dentro da pasta
+digite `npm install --save`.
 
-## Build
+## Modo desenvolvedor
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Inicie com `ng serve` . Navegue para `http://localhost:4200/`. A aplicação recarrega automaticamente após mudança
+nos recursos ou código.
