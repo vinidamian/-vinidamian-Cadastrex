@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Feito pelos alunos do curso técnico em informática do SENAI / SJ, turma de 2021
 
-`Alunos: Gabriel de Souza Leal e Vinicius Damian.`
+`Alunos: Gabriel de Souza Leal, Vinicius Damian, Gabriel de Souza, Caio Guerra, Kaue Borba e Erick Berlink`
 
 ## Inicio
 
